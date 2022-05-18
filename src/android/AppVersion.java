@@ -13,33 +13,53 @@ import android.content.pm.PackageManager;
 public class AppVersion extends CordovaPlugin {
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-
+    
+      
+    //////////////////////////////////
+    //////////////////////////////////
+    
+    cordova.getThreadPool().execute(new Runnable() {
+    public void run() {
+    
+    //////////////////////////////////
+    //////////////////////////////////  
+	
+	
     try {
       if (action.equals("getAppName")) {
-        PackageManager packageManager = this.cordova.getActivity().getPackageManager();
-        ApplicationInfo app = packageManager.getApplicationInfo(this.cordova.getActivity().getPackageName(), 0);
+        PackageManager packageManager = cordova.getActivity().getPackageManager();
+        ApplicationInfo app = packageManager.getApplicationInfo(cordova.getActivity().getPackageName(), 0);
         callbackContext.success((String)packageManager.getApplicationLabel(app));
-        return true;
+        //return true;
       }
       if (action.equals("getPackageName")) {
-        callbackContext.success(this.cordova.getActivity().getPackageName());
-        return true;
+        callbackContext.success(cordova.getActivity().getPackageName());
+        //return true;
       }
       if (action.equals("getVersionNumber")) {
-        PackageManager packageManager = this.cordova.getActivity().getPackageManager();
-        callbackContext.success(packageManager.getPackageInfo(this.cordova.getActivity().getPackageName(), 0).versionName);
-      return true;
+        PackageManager packageManager = cordova.getActivity().getPackageManager();
+        callbackContext.success(packageManager.getPackageInfo(cordova.getActivity().getPackageName(), 0).versionName);
+      //return true;
       }
       if (action.equals("getVersionCode")) {
-        PackageManager packageManager = this.cordova.getActivity().getPackageManager();
-        callbackContext.success(packageManager.getPackageInfo(this.cordova.getActivity().getPackageName(), 0).versionCode);
-      return true;
+        PackageManager packageManager = cordova.getActivity().getPackageManager();
+        callbackContext.success(packageManager.getPackageInfo(cordova.getActivity().getPackageName(), 0).versionCode);
+      //return true;
       }
-      return false;
+      //return false;
     } catch (NameNotFoundException e) {
       callbackContext.success("N/A");
-      return true;
+      //return true;
     }
+    
+    //////////////////////////////////
+    //////////////////////////////////
+    }
+    });
+    //////////////////////////////////
+    //////////////////////////////////
+    
+    return true;
   }
 
 }
