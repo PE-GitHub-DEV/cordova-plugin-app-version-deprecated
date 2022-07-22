@@ -15,7 +15,7 @@ public class AppVersion extends CordovaPlugin {
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     
       
-    ////////////////////////////////// /* [Azentio] fix #1378944 - Add Thread Runnable */
+    
   
     
     cordova.getThreadPool().execute(new Runnable() {
@@ -54,7 +54,7 @@ public class AppVersion extends CordovaPlugin {
     }
     });
     
-    ////////////////////////////////// /* [Azentio] fix #1378944 - Add Thread Runnable */
+    
     
     return true;
   }
